@@ -34,10 +34,13 @@ This guide will help you set up the backend and frontend for the project.
 
 5. **Run database migrations:**
    ```bash
+   python manage.py makemigrations
+   ```
+   ```bash
    python manage.py migrate
    ```
 
-6. **Start the development server:**
+7. **Start the development server:**
    ```bash
    python manage.py runserver
    ```
