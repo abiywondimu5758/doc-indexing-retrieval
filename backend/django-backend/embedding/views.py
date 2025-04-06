@@ -36,7 +36,7 @@ class GloveEmbeddingView(APIView):
             return JsonResponse({"error": "No text provided"}, status=400)
 
         # Load pre-trained GloVe embeddings (ensure the file path is correct)
-        glove_path = "/path/to/glove.6B.100d.txt"  # Update this path
+        glove_path = "/home/abiy/Documents/assignments/glove.6B/glove.6B.100d.txt"  # Update this path
         glove_model = KeyedVectors.load_word2vec_format(glove_path, binary=False, no_header=True)
 
         # Tokenize the input text

@@ -1,5 +1,6 @@
 
 import EmbeddingComponent from './components/embedding';
+import FTEmbeddingComponent from './components/FTEmbedding';
 import GEmbeddingComponent from './components/Gembedding';
 import GPTEmbeddingComponent from './components/GPTembedding';
 import Search from './components/Search';
@@ -11,10 +12,11 @@ export default function Home() {
 
       <UploadDocument />
       <Search/>
-      <EmbeddingComponent/>
-      <GPTEmbeddingComponent/>
       <WVEmbeddingComponent/>
       <GEmbeddingComponent/>
+      <FTEmbeddingComponent/>
+      <EmbeddingComponent/>
+      <GPTEmbeddingComponent/>
 </div>
   );
 }
