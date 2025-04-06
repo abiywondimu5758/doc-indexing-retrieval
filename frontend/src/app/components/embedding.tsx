@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'; // added axios import
 import * as d3 from 'd3';
-
 import { ClipLoader } from 'react-spinners';
 
 const EmbeddingComponent = () => {

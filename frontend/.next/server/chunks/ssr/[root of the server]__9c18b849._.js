@@ -187,7 +187,7 @@ const EmbeddingComponent = ()=>{
                 children: "Generate Embedding using BERT"
             }, void 0, false, {
                 fileName: "[project]/src/app/components/embedding.tsx",
-                lineNumber: 71,
+                lineNumber: 70,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -201,7 +201,7 @@ const EmbeddingComponent = ()=>{
                         className: "w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/embedding.tsx",
-                        lineNumber: 73,
+                        lineNumber: 72,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -210,13 +210,13 @@ const EmbeddingComponent = ()=>{
                         children: "Send Request"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/embedding.tsx",
-                        lineNumber: 80,
+                        lineNumber: 79,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/components/embedding.tsx",
-                lineNumber: 72,
+                lineNumber: 71,
                 columnNumber: 13
             }, this),
             mutation.isPending && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -226,12 +226,12 @@ const EmbeddingComponent = ()=>{
                     size: 50
                 }, void 0, false, {
                     fileName: "[project]/src/app/components/embedding.tsx",
-                    lineNumber: 88,
+                    lineNumber: 87,
                     columnNumber: 45
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/embedding.tsx",
-                lineNumber: 87,
+                lineNumber: 86,
                 columnNumber: 36
             }, this),
             mutation.isError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -239,7 +239,7 @@ const EmbeddingComponent = ()=>{
                 children: "Error fetching embedding."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/embedding.tsx",
-                lineNumber: 90,
+                lineNumber: 89,
                 columnNumber: 34
             }, this),
             embedding && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -249,18 +249,18 @@ const EmbeddingComponent = ()=>{
                     ref: svgRef
                 }, void 0, false, {
                     fileName: "[project]/src/app/components/embedding.tsx",
-                    lineNumber: 93,
+                    lineNumber: 92,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/embedding.tsx",
-                lineNumber: 92,
+                lineNumber: 91,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/components/embedding.tsx",
-        lineNumber: 70,
+        lineNumber: 69,
         columnNumber: 9
     }, this);
 };
@@ -284,7 +284,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$d3$2d$scale$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$d3$2d$array$2f$src$2f$extent$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__extent$3e$__ = __turbopack_context__.i("[project]/node_modules/d3-array/src/extent.js [app-ssr] (ecmascript) <export default as extent>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$d3$2d$shape$2f$src$2f$line$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__line$3e$__ = __turbopack_context__.i("[project]/node_modules/d3-shape/src/line.js [app-ssr] (ecmascript) <export default as line>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$d3$2d$axis$2f$src$2f$axis$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/d3-axis/src/axis.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$spinners$2f$esm$2f$ClipLoader$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ClipLoader$3e$__ = __turbopack_context__.i("[project]/node_modules/react-spinners/esm/ClipLoader.js [app-ssr] (ecmascript) <export default as ClipLoader>");
 'use client';
+;
 ;
 ;
 ;
@@ -404,9 +406,16 @@ const FTEmbeddingComponent = ()=>{
                 lineNumber: 73,
                 columnNumber: 13
             }, this),
-            mutation.isPending && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-center mt-4",
-                children: "Loading..."
+            mutation.isPending && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex justify-center mt-4",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$spinners$2f$esm$2f$ClipLoader$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ClipLoader$3e$__["ClipLoader"], {
+                    color: "#3b82f6",
+                    size: 50
+                }, void 0, false, {
+                    fileName: "[project]/src/app/components/FTEmbedding.tsx",
+                    lineNumber: 89,
+                    columnNumber: 33
+                }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FTEmbedding.tsx",
                 lineNumber: 88,
@@ -417,7 +426,7 @@ const FTEmbeddingComponent = ()=>{
                 children: "Error fetching embedding."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FTEmbedding.tsx",
-                lineNumber: 89,
+                lineNumber: 91,
                 columnNumber: 34
             }, this),
             embeddings && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,12 +436,12 @@ const FTEmbeddingComponent = ()=>{
                         vector: vector
                     }, word, false, {
                         fileName: "[project]/src/app/components/FTEmbedding.tsx",
-                        lineNumber: 94,
+                        lineNumber: 96,
                         columnNumber: 25
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/app/components/FTEmbedding.tsx",
-                lineNumber: 91,
+                lineNumber: 93,
                 columnNumber: 17
             }, this)
         ]
