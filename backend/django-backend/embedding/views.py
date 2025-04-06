@@ -6,6 +6,9 @@ from gensim.utils import simple_preprocess
 from transformers import BertTokenizer, BertModel
 import torch
 # from transformers.utils import init_empty_weights
+from contextlib import contextmanager
+import transformers.modeling_utils as modeling_utils
+
 
 class Word2VecEmbeddingView(APIView):
     def post(self, request, *args, **kwargs):
@@ -67,6 +70,23 @@ class FastTextEmbeddingView(APIView):
 
         return JsonResponse({"embeddings": embeddings})
 
+# Monkey-patch init_empty_weights if it's not defined
+if not hasattr(modeling_utils, "init_empty_weights"):
+    def init_empty_weights(*args, **kwargs):
+        @contextmanager
+        def dummy_context_manager():
+            yield
+        return dummy_context_manager()
+    modeling_utils.init_empty_weights = init_empty_weights
+
+# Patch _find_missing_and_unexpected_keys to bypass find_tied_parameters
+def dummy_find_missing_and_unexpected_keys(*args, **kwargs):
+    # Return empty lists for missing and unexpected keys
+    return ([], [])
+
+modeling_utils._find_missing_and_unexpected_keys = dummy_find_missing_and_unexpected_keys
+
+
 class BertEmbeddingView(APIView):
     def post(self, request, *args, **kwargs):
         # Extract text data from the request
@@ -87,5 +107,3 @@ class BertEmbeddingView(APIView):
             embeddings = outputs.last_hidden_state.mean(dim=1).squeeze().tolist()  # Sentence-level embedding
 
         return JsonResponse({"embedding": embeddings})
-
-# Create your views here.
