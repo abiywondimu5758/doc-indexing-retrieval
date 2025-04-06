@@ -5,6 +5,7 @@ from gensim.models import Word2Vec, KeyedVectors, FastText
 from gensim.utils import simple_preprocess
 from transformers import BertTokenizer, BertModel
 import torch
+# from transformers.utils import init_empty_weights
 
 class Word2VecEmbeddingView(APIView):
     def post(self, request, *args, **kwargs):
