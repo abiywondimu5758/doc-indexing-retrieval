@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'; // added axios import
 import * as d3 from 'd3';
+import { ClipLoader } from 'react-spinners';
 
 const GPTEmbeddingComponent = () => {
     const [embedding, setEmbedding] = useState<number[] | null>(null);
@@ -82,7 +83,9 @@ const GPTEmbeddingComponent = () => {
                     Send Request
                 </button>
             </div>
-            {mutation.isPending && <p className="text-center mt-4">Loading...</p>}
+            {mutation.isPending &&                 <div className="flex justify-center mt-4">
+                    <ClipLoader color="#3b82f6" size={50} />
+                </div>}
             {mutation.isError && <p className="text-center mt-4 text-red-500">Error fetching embedding.</p>}
             {embedding && 
                 <div className="mt-8 flex justify-center">
