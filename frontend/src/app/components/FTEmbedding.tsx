@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import * as d3 from 'd3';
 
+
 // New inline component to render a chart for a given word vector
 const WordChart = ({ label, vector }: { label: string; vector: number[] }) => {
     const chartRef = useRef<SVGSVGElement | null>(null);
