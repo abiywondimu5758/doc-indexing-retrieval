@@ -13,6 +13,15 @@ const Search = () => {
   const [language, setLanguage] = useState('en');
   const [searchType, setSearchType] = useState('vector');
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [termDocumentMatrix, setTermDocumentMatrix] = useState<{ [term: string]: { [doc: string]: number } }>({}); // added state
+
+  // Compute unique documents and terms for the matrix view
+  const docs = Array.from(
+    new Set(
+      Object.values(termDocumentMatrix).flatMap((docMap) => Object.keys(docMap))
+    )
+  );
+  const terms = Object.keys(termDocumentMatrix);
 
   const handleSearch = async () => {
     const response = await axios.get(
@@ -20,6 +29,8 @@ const Search = () => {
     );
     console.log(response.data.results);
     setResults(response.data.results);
+    console.log(response.data.term_document_matrix); // log matrix
+    setTermDocumentMatrix(response.data.term_document_matrix); // store matrix data
   };
 
   const handleSearchBool = async () => {
@@ -28,6 +39,8 @@ const Search = () => {
     );
     console.log(response.data.results);
     setResults(response.data.results);
+    // Optionally, clear or set the term matrix if returned from boolean search
+    setTermDocumentMatrix({});
   };
 
   const handleSearchClick = () => {
@@ -93,6 +106,37 @@ const Search = () => {
               </div>
             ))}
           </div>
+        </div>
+      )}
+      {terms.length > 0 && (
+        <div className="mt-8 overflow-auto">
+          <h3 className="text-2xl font-bold text-gray-700 mb-4">Document Term Matrix</h3>
+          <table className="min-w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2 bg-gray-200">Term</th>
+                {docs.map((doc) => (
+                  <th key={doc} className="border px-4 py-2 bg-gray-200">
+                    {doc}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {terms.map((term) => (
+                <tr key={term}>
+                  <td className="border px-4 py-2 font-semibold">{term}</td>
+                  {docs.map((doc) => (
+                    <td key={doc} className="border px-4 py-2 text-center">
+                      {termDocumentMatrix[term][doc] !== undefined
+                        ? termDocumentMatrix[term][doc].toFixed(2)
+                        : '0'}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

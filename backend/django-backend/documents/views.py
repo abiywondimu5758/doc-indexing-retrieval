@@ -23,6 +23,16 @@ from etnltk.lang.am.normalizer import (
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+# converts text into muerical feacture vectors
+# TfidfVectorizer
+# CountVectorizer
+# HashingVectorizer
+
+# functions to compute pairwise similarity
+# cosine_similarity
+# euclidean_distance
+# manhattan_distances
+
 
 # nltk.download('punkt')
 # nltk.download('punkt_tab')
@@ -393,21 +403,24 @@ class BooleanRetrievalAPIView(APIView):
         return Response({"results": list(docs)})
 
 def calculate_tf(token_counts):
-    total = sum(token_counts.values())
-    if total == 0:
+    if not token_counts:
         return token_counts
-    return {token: count / total for token, count in token_counts.items()}
+    max_count = max(token_counts.values())
+    if max_count == 0:
+        return token_counts
+    return {token: count / max_count for token, count in token_counts.items()}
 
 def compute_tfidf(tf_vector, total_docs):
     tfidf = {}
+    max_idf = math.log(1 + total_docs) + 1  # maximum idf when df = 0
     for term, tf in tf_vector.items():
         try:
             index_entry = InverseIndex.objects.get(term=term)
             df = len(index_entry.postings.get("titles", []))
         except InverseIndex.DoesNotExist:
             df = 0
-        # Adding 1 to df for smoothing to avoid division by zero
-        idf = math.log(total_docs / (df + 1))
+        # Smoothed IDF then normalized so that idf is between 0 and 1
+        idf = (math.log((1 + total_docs) / (1 + df)) + 1) / max_idf
         tfidf[term] = tf * idf
     return tfidf
 
@@ -435,9 +448,10 @@ class VectorSpaceRetrievalAPIView(APIView):
         query_tf = calculate_tf(query_vector)
         total_docs = Document.objects.count()
         query_tfidf = compute_tfidf(query_tf, total_docs)
-        
 
+        print("tfidf", query_tfidf)
     
+        term_doc_matrix = {}  # term -> {doc_title: weight, ...}
         scored_docs = []
         for doc in Document.objects.all():
             if not doc.stemmed_text:
@@ -447,17 +461,31 @@ class VectorSpaceRetrievalAPIView(APIView):
             doc_tfidf = compute_tfidf(doc_tf, total_docs)
             score = cosine_similarity(query_tfidf, doc_tfidf)
             if score > 0:
-                scored_docs.append((score, doc))
-    
+                scored_docs.append((score, doc, doc_tfidf))
+                # Build term-document matrix by adding each term's weight for this document
+                for term, weight in doc_tfidf.items():
+                    if term not in term_doc_matrix:
+                        term_doc_matrix[term] = {}
+                    term_doc_matrix[term][doc.title] = weight
+        
+        # Add the query vector into the term-document matrix using a fixed document title 'query'
+        for term, weight in query_tfidf.items():
+            if term not in term_doc_matrix:
+                term_doc_matrix[term] = {}
+            term_doc_matrix[term]['query'] = weight
+
         scored_docs.sort(key=lambda x: x[0], reverse=True)
         results = []
-        for score, doc in scored_docs:
+        for score, doc, _ in scored_docs:
             serialized = DocumentSerializer(doc).data
             serialized['similarity'] = score
             results.append(serialized)
-        
-        return Response({"results": results})
-
+        print(term_doc_matrix)
+        # Return both the similar documents and the updated term-document matrix
+        return Response({
+            "results": results,
+            "term_document_matrix": term_doc_matrix
+        })
 
 # class VectorSpaceRetrievalAPIView(APIView):
 #     def get(self, request):

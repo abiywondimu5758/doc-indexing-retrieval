@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from documents.views import TokenizeDocumentAPIView, StopwordDocumentAPIView, StemDocumentAPIView, UploadFileAPIView, BooleanRetrievalAPIView, VectorSpaceRetrievalAPIView
+from embedding.views import Word2VecEmbeddingView,GloveEmbeddingView, FastTextEmbeddingView,BertEmbeddingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,8 @@ urlpatterns = [
     path('api/documents/upload', UploadFileAPIView.as_view(), name='upload-file'),
 path('api/documents/boolean', BooleanRetrievalAPIView.as_view(), name='boolean-document'),
     path('api/documents/vector', VectorSpaceRetrievalAPIView.as_view(), name='vector-document'),
+    path('api/embedding/word2vec', Word2VecEmbeddingView.as_view(), name='word2vec'),
+    path('api/embedding/glove', GloveEmbeddingView.as_view(), name='glove'),
+    path('api/embedding/fasttext', FastTextEmbeddingView.as_view(), name='fasttext'),
+    path('api/embedding/bert', BertEmbeddingView.as_view(), name='bert'),
 ]
