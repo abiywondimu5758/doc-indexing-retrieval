@@ -107,3 +107,27 @@ class BertEmbeddingView(APIView):
             embeddings = outputs.last_hidden_state.mean(dim=1).squeeze().tolist()  # Sentence-level embedding
 
         return JsonResponse({"embedding": embeddings})
+
+class GPTEmbeddingView(APIView):
+    def post(self, request, *args, **kwargs):
+        # Extract text data from the request
+        text_data = request.data.get("text", "")
+        if not text_data:
+            return JsonResponse({"error": "No text provided"}, status=400)
+        
+        # Load pre-trained GPT2 model and tokenizer
+        from transformers import GPT2Tokenizer, GPT2Model
+        tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        # Set pad_token to eos_token since GPT2 doesn't have one by default
+        tokenizer.pad_token = tokenizer.eos_token
+        model = GPT2Model.from_pretrained("gpt2")
+        
+        # Tokenize and encode the input text
+        inputs = tokenizer(text_data, return_tensors="pt", truncation=True, padding=True, max_length=512)
+        
+        # Generate embeddings with mean pooling
+        with torch.no_grad():
+            outputs = model(**inputs)
+            embeddings = outputs.last_hidden_state.mean(dim=1).squeeze().tolist()
+        
+        return JsonResponse({"embedding": embeddings})
