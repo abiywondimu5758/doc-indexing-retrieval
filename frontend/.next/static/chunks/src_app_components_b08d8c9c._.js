@@ -289,7 +289,7 @@ const GEmbeddingComponent = ()=>{
         }["GEmbeddingComponent.useMutation[mutation]"],
         onError: {
             "GEmbeddingComponent.useMutation[mutation]": (error)=>{
-                console.error('Error fetching word2vec embedding:', error);
+                console.error('Error fetching GloVe embedding:', error);
             }
         }["GEmbeddingComponent.useMutation[mutation]"]
     });

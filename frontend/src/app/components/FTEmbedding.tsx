@@ -44,14 +44,14 @@ const WordChart = ({ label, vector }: { label: string; vector: number[] }) => {
     );
 };
 
-const GEmbeddingComponent = () => {
+const FTEmbeddingComponent = () => {
     // Change state to hold embeddings mapping (word -> vector)
     const [embeddings, setEmbeddings] = useState<{ [key: string]: number[] } | null>(null);
     const [inputText, setInputText] = useState("");
     
     const mutation = useMutation({
         mutationFn: async (text: string) => {
-            const response = await axios.post('http://127.0.0.1:8000/api/embedding/glove', { text });
+            const response = await axios.post('http://127.0.0.1:8000/api/embedding/fasttext', { text });
             return response.data;
         },
         // Store the entire embeddings object rather than a single key
@@ -60,14 +60,14 @@ const GEmbeddingComponent = () => {
             // console.log('Word2Vec Embeddings:', data.embeddings);
         },
         onError: (error: Error) => {
-            console.error('Error fetching GloVe embedding:', error);
+            console.error('Error fetching FastText embedding:', error);
         }
     });
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-gray-50 shadow-lg rounded">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-                Generate Embedding using GloVe
+                Generate Embedding using FastText
             </h2>
             <div className="space-y-4">
                 <input 
@@ -98,4 +98,4 @@ const GEmbeddingComponent = () => {
     );
 };
 
-export default GEmbeddingComponent;
+export default FTEmbeddingComponent;
